@@ -13,17 +13,24 @@ export const UserSchema = new mongoose.Schema({
 });
 
 export interface User {
-    name : String;
-    email : String;
-    password : String;
-    roles : String[];
+    name : string;
+    email : string;
+    password : string;
+    roles : string[];
 }
 
 export class UserCreateDto {
     @ApiProperty()
-    name : String;
+    name : string;
     @ApiProperty()
-    email : String;
+    email : string;
     @ApiProperty()
-    password : String;
+    password : string;
+}
+
+export class UserConnect {
+    @ApiProperty()
+    username : string;
+    @ApiProperty()
+    password : string;
 }
