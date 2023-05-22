@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'add /api to the end of the url to get to swagger';
+  getHello() {
+    return {message: 'add /api to get to swagger'};
   }
 }

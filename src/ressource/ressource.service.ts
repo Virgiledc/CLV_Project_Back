@@ -18,8 +18,9 @@ export class RessourceService {
     async getRessource(id: String) {
         // get a ressource from mongoDB
         const ressource = await this.ressourceModel.findOne({
-            id: id
+            _id: id
         })
+        console.log(ressource);
         if(!ressource)
             throw new NotFoundException('Ressource not found');
 

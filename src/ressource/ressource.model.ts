@@ -4,7 +4,7 @@ import { IsOptional } from 'class-validator';
 import { IsString, IsNotEmpty } from 'class-validator';
 
 export const RessourceSchema = new mongoose.Schema({
-  id : Number,
+  id : String,
   title: { type: String, required: true },
   description: { type: String, required: true },
   content: { type: String, required: true },
@@ -16,6 +16,7 @@ export const RessourceSchema = new mongoose.Schema({
 });
 
 export interface Ressource {
+  id: string;
   title: string;
   description: string;
   content : string;
@@ -23,6 +24,10 @@ export interface Ressource {
 }
 
 export class RessourceCreateDto {
+
+  @ApiProperty({ description: 'The id of the ressource' })
+  id: string;
+
   @ApiProperty({ description: 'The title of the ressource' })
   title: string;
 

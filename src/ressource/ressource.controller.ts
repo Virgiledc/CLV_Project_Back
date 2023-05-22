@@ -9,6 +9,9 @@ import { diskStorage } from 'multer';
 import path, { extname } from 'path';
 import { of } from 'rxjs';
 import { ApiOperation, ApiConsumes } from '@nestjs/swagger';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @ApiTags('ressource')
 @Controller('ressource')
@@ -27,12 +30,16 @@ export class RessourceController {
     return ressource;
   }
 
+  @ApiBearerAuth()
   @Post()
+  @UseGuards(JwtAuthGuard)
   async createRessource(@Body() ressourceService: RessourceCreateDto) {
     return this.ressourceService.createRessource(ressourceService);
   }
 
+  @ApiBearerAuth()
   @Post('/image/:id')
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Upload an image with the id of the ressource' })
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('image', {
